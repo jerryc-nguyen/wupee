@@ -3,6 +3,10 @@ module Wupee
     attr_reader :deliver_when, :attached_object, :receiver_s, :notification_type, :subject_vars, :locals, :headers, :config_scope
 
     def initialize(opts = {})
+
+      @parent_id = opts[:parent_id]
+      @parent_type = opts[:parent_type]
+
       @attached_object = opts[:attached_object]
 
       receiver_arg = opts[:receiver] || opts[:receivers]
@@ -61,8 +65,14 @@ module Wupee
 
       notifications = []
       @receiver_s.each do |receiver|
-        notification = Wupee::Notification.new(receiver: receiver, notification_type: @notification_type, attached_object: @attached_object)
-        
+        notification = Wupee::Notification.new(
+          receiver: receiver,
+          notification_type: @notification_type,
+          attached_object: @attached_object,
+          parent_id: @parent_id,
+          parent_type: @parent_type
+        )
+
         notification.is_wanted = false unless send_notification?(receiver, @notification_type)
 
         notification.save!
@@ -99,7 +109,7 @@ module Wupee
 
       def send_notification?(receiver, notification_type)
         if !Wupee.notification_sending_rule.nil?
-          if Wupee.notification_sending_rule.is_a?(Proc)  
+          if Wupee.notification_sending_rule.is_a?(Proc)
             Wupee.notification_sending_rule.call(receiver, notification_type)
           else
             Wupee.notification_sending_rule
@@ -111,7 +121,7 @@ module Wupee
 
       def send_email?(receiver, notification_type)
         if !Wupee.email_sending_rule.nil?
-          if Wupee.email_sending_rule.is_a?(Proc)  
+          if Wupee.email_sending_rule.is_a?(Proc)
             Wupee.email_sending_rule.call(receiver, notification_type)
           else
             Wupee.email_sending_rule
