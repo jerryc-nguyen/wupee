@@ -57,6 +57,10 @@ class Wupee::Notification < ActiveRecord::Base
     @review ||= ProductReview.find_by_id(parent_id)
   end
 
+  def default_message
+    meta["message"]
+  end
+
   def actor_name
     meta["actor_name"].presence
   end
