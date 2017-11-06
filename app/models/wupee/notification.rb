@@ -15,7 +15,7 @@ class Wupee::Notification < ActiveRecord::Base
   def self.last_notification_for(receiver_id: nil, receiver_type: "User",
     attached_object_type: nil, noti_type: nil, request_id: nil,
     attached_object_id: nil, notification_type_id: nil,
-    parent_id: nil, parent_type: nil
+    parent_id: nil, parent_type: nil, comment_id: nil
     )
 
     condition = {
@@ -38,6 +38,10 @@ class Wupee::Notification < ActiveRecord::Base
 
     if parent_type.present?
       condition[:parent_type] = parent_type
+    end
+
+    if comment_id.present?
+      condition[:comment_id] = comment_id
     end
 
     relation = where(condition)
