@@ -57,6 +57,14 @@ class Wupee::Notification < ActiveRecord::Base
     @review ||= ProductReview.find_by_id(parent_id)
   end
 
+  def actor_name
+    meta["actor_name"].presence
+  end
+
+  def redirect_url
+    meta["redirect_url"].presence
+  end
+
   def actor_avatar_url
     meta["actor_avatar_url"].presence || Settings.placeholders.avatar
   end
