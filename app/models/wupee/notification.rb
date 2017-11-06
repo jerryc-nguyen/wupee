@@ -58,7 +58,7 @@ class Wupee::Notification < ActiveRecord::Base
   end
 
   def actor_avatar_url
-    meta["owner_review_path"].presence || Settings.placeholders.avatar
+    meta["actor_avatar_url"].presence || Settings.placeholders.avatar
   end
 
   def owner_review_path
