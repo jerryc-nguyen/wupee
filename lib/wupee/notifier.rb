@@ -6,6 +6,8 @@ module Wupee
 
       @parent_id = opts[:parent_id]
       @parent_type = opts[:parent_type]
+      @comment_id = opts[:comment_id]
+      @meta = opts[:meta]
 
       @attached_object = opts[:attached_object]
 
@@ -70,7 +72,9 @@ module Wupee
           notification_type: @notification_type,
           attached_object: @attached_object,
           parent_id: @parent_id,
-          parent_type: @parent_type
+          parent_type: @parent_type,
+          comment_id: @comment_id,
+          meta: @meta
         )
 
         notification.is_wanted = false unless send_notification?(receiver, @notification_type)
