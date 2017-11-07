@@ -7,6 +7,7 @@ module Wupee
       @parent_id = opts[:parent_id]
       @parent_type = opts[:parent_type]
       @comment_id = opts[:comment_id]
+      @sender_id = opts[:sender_id]
       @meta = opts[:meta]
 
       @attached_object = opts[:attached_object]
@@ -74,6 +75,7 @@ module Wupee
           parent_id: @parent_id,
           parent_type: @parent_type,
           comment_id: @comment_id,
+          sender_id: @sender_id,
           meta: @meta
         )
 
