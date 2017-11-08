@@ -30,6 +30,10 @@ module Wupee
       @headers = headers
     end
 
+    def meta(meta)
+      @meta = meta
+    end
+
     def notif_type(notif_type)
       if notif_type.is_a?(Wupee::NotificationType)
         @notification_type = notif_type
