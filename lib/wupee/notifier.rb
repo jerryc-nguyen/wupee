@@ -1,6 +1,6 @@
 module Wupee
   class Notifier
-    attr_reader :deliver_when, :attached_object, :receiver_s, :notification_type, :subject_vars, :locals, :headers, :config_scope
+    attr_reader :deliver_when, :attached_object, :receiver_s, :notification_type, :subject_vars, :locals, :headers, :config_scope, :meta
 
     def initialize(opts = {})
 
