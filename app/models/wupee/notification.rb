@@ -12,6 +12,14 @@ class Wupee::Notification < ActiveRecord::Base
   scope :unwanted, -> { where(is_wanted: false) }
   scope :ordered, -> { order(created_at: :desc) }
 
+  def default_message
+    (meta || {})["message"]
+  end
+
+  def message_detail
+    (meta || {})["defail"]
+  end
+
   def review
     @review ||= ProductReview.find_by_id(parent_id)
   end
