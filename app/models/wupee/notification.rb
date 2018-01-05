@@ -17,11 +17,15 @@ class Wupee::Notification < ActiveRecord::Base
   end
 
   def message_detail
-    (meta || {})["defail"]
+    (meta || {})["detail"]
   end
 
   def review
     @review ||= ProductReview.find_by_id(parent_id)
+  end
+
+  def request
+    @request ||= Request.find_by_id(parent_id)
   end
 
   def actor_name
