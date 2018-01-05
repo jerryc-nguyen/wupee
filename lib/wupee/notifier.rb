@@ -66,6 +66,22 @@ module Wupee
       @locals = locals
     end
 
+    def sender_id(sender_id = nil)
+      @sender_id = sender_id
+    end
+
+    def comment_id(comment_id = nil)
+      @comment_id = comment_id
+    end
+
+    def parent_type(parent_type = nil)
+      @parent_type = parent_type
+    end
+
+    def parent_id(parent_id = nil)
+      @parent_id = parent_id
+    end
+
     def execute
       raise ArgumentError.new('receiver or receivers is missing') if @receiver_s.nil?
       raise ArgumentError.new('notif_type is missing') if @notification_type.nil?
