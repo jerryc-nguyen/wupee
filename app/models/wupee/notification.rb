@@ -12,6 +12,10 @@ class Wupee::Notification < ActiveRecord::Base
   scope :unwanted, -> { where(is_wanted: false) }
   scope :ordered, -> { order(created_at: :desc) }
 
+  def redirect_url
+    "#{ENV['DEFAULT_HOST']}/notifications/#{self.id}"
+  end
+
   def default_message
     (meta || {})["message"]
   end
