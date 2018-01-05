@@ -32,10 +32,6 @@ class Wupee::Notification < ActiveRecord::Base
     meta["actor_name"].presence
   end
 
-  def redirect_url
-    meta["redirect_url"].presence
-  end
-
   def actor_avatar_url
     meta["actor_avatar_url"].presence || Settings.placeholders.avatar
   end
