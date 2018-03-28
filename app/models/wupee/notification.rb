@@ -1,6 +1,7 @@
 class Wupee::Notification < ActiveRecord::Base
   belongs_to :receiver, polymorphic: true
   belongs_to :attached_object, polymorphic: true
+  belongs_to :parent, polymorphic: true
   belongs_to :notification_type, class_name: "Wupee::NotificationType"
 
   validates :receiver, presence: true
